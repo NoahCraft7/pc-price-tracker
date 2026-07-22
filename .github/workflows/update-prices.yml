@@ -1,0 +1,36 @@
+name: Update PC Part Prices
+
+on:
+  schedule:
+    # Runs at 13:00 UTC every other day (~9am ET / 6am PT).
+    # This keeps you comfortably inside SerpApi's free 100/month tier.
+    - cron: "0 13 */2 * *"
+  workflow_dispatch: {} # lets you also trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run price update script
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+        run: node scripts/update-prices.mjs
+
+      - name: Commit updated prices.json
+        run: |
+          git config user.name "price-bot"
+          git config user.email "actions@github.com"
+          git add prices.json
+          git diff --quiet --cached || git commit -m "Update part prices [automated]"
+          git push
