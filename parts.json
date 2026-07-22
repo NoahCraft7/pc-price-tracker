@@ -1,0 +1,27 @@
+[
+  {
+    "id": "gpu",
+    "label": "NVIDIA GeForce RTX 4060 Ti 16GB",
+    "query": "RTX 4060 Ti 16GB graphics card"
+  },
+  {
+    "id": "cpu",
+    "label": "AMD Ryzen 7 5800X3D",
+    "query": "AMD Ryzen 7 5800X3D processor"
+  },
+  {
+    "id": "ram",
+    "label": "Corsair Vengeance RGB 32GB DDR4-3600",
+    "query": "Corsair Vengeance RGB 32GB DDR4 3600"
+  },
+  {
+    "id": "storage",
+    "label": "WD Black SN850X 2TB NVMe",
+    "query": "WD Black SN850X 2TB NVMe SSD"
+  },
+  {
+    "id": "psu",
+    "label": "Corsair RM850x 850W 80+ Gold",
+    "query": "Corsair RM850x 850W power supply"
+  }
+]
