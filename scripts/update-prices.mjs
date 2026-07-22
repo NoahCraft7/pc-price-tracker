@@ -1,0 +1,102 @@
+// update-prices.mjs
+// Fetches current prices for each part in parts.json using SerpApi's
+// Google Shopping engine (covers Amazon, Newegg, Best Buy, and more in one call),
+// then writes the results to prices.json.
+
+import { readFile, writeFile } from "fs/promises";
+
+const SERPAPI_KEY = process.env.SERPAPI_KEY;
+
+if (!SERPAPI_KEY) {
+  console.error("Missing SERPAPI_KEY environment variable. Set it as a GitHub Actions secret.");
+  process.exit(1);
+}
+
+async function fetchOffersForPart(part) {
+  const url = new URL("https://serpapi.com/search.json");
+  url.searchParams.set("engine", "google_shopping");
+  url.searchParams.set("q", part.query);
+  url.searchParams.set("api_key", SERPAPI_KEY);
+  url.searchParams.set("num", "20");
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`SerpApi request failed for "${part.query}": ${res.status} ${res.statusText}`);
+  }
+  const data = await res.json();
+
+  const results = data.shopping_results || [];
+
+  // Keep only results that have both a price and a source/link, then
+  // pick the best (lowest) offer per retailer so we get a clean
+  // "one price per site" comparison instead of 20 near-duplicates.
+  const bySite = new Map();
+  for (const r of results) {
+    if (!r.price || !r.source) continue;
+    const priceNum = parsePrice(r.price);
+    if (priceNum === null) continue;
+
+    const existing = bySite.get(r.source);
+    if (!existing || priceNum < existing.price) {
+      bySite.set(r.source, {
+        site: r.source,
+        price: priceNum,
+        priceDisplay: r.price,
+        title: r.title,
+        link: r.product_link || r.link || null,
+      });
+    }
+  }
+
+  const offers = Array.from(bySite.values()).sort((a, b) => a.price - b.price);
+  return offers.slice(0, 6); // keep the 6 cheapest sites
+}
+
+function parsePrice(str) {
+  const match = String(str).replace(/,/g, "").match(/(\d+(\.\d+)?)/);
+  return match ? parseFloat(match[1]) : null;
+}
+
+async function main() {
+  const partsRaw = await readFile(new URL("../parts.json", import.meta.url), "utf-8");
+  const parts = JSON.parse(partsRaw);
+
+  const output = {
+    updatedAt: new Date().toISOString(),
+    parts: {},
+  };
+
+  for (const part of parts) {
+    console.log(`Fetching offers for: ${part.label}`);
+    try {
+      const offers = await fetchOffersForPart(part);
+      output.parts[part.id] = {
+        label: part.label,
+        query: part.query,
+        offers,
+      };
+    } catch (err) {
+      console.error(`Failed for ${part.label}:`, err.message);
+      output.parts[part.id] = {
+        label: part.label,
+        query: part.query,
+        offers: [],
+        error: err.message,
+      };
+    }
+    // Small delay so we don't hammer the API back-to-back.
+    await new Promise((r) => setTimeout(r, 1000));
+  }
+
+  await writeFile(
+    new URL("../prices.json", import.meta.url),
+    JSON.stringify(output, null, 2)
+  );
+
+  console.log("Done. Wrote prices.json");
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
