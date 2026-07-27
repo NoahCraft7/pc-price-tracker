@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-25T14:26:03.946Z",
+  "updatedAt": "2026-07-27T15:35:48.115Z",
   "parts": {
     "gpu": {
       "label": "NVIDIA GeForce RTX 4060 Ti 16GB",
@@ -13,6 +13,13 @@
           "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:10754955896984684993,headlineOfferDocid:10754955896984684993,imageDocid:9387401913614976349,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
+          "site": "Walmart - Premier Deals",
+          "price": 327.74,
+          "priceDisplay": "$327.74",
+          "title": "Restored Asus Dual GeForce RTX 4060 Ti EVO OC Edition 8GB Gddr6 Graphics Card (DUAL-RTX4060TI-O8G-EVO)(Refurbished)",
+          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:1561716963713488975,headlineOfferDocid:1561716963713488975,imageDocid:1849675078264556364,rds:PC_5345725028603305858|PROD_PC_5345725028603305858,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
           "site": "eBay",
           "price": 419.99,
           "priceDisplay": "$419.99",
@@ -20,32 +27,25 @@
           "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=catalogid:11132364025658352402,productid:10733373824342120325,headlineOfferDocid:8806628797103746107,imageDocid:17336836473368346446,rds:PC_10276492891812678442|PROD_PC_10276492891812678442,gpcid:10276492891812678442,mid:576462769730955793,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Newegg.com",
-          "price": 459.99,
-          "priceDisplay": "$459.99",
-          "title": "Recertified - ASUS Dual GeForce RTX 4060 Ti 16GB GDDR6 PCI Express 4.0 x8 ATX Graphics Card DUAL-RTX4060TI-O16G-EVO",
-          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:4043349957202943886,headlineOfferDocid:4043349957202943886,imageDocid:7496625225483714271,rds:PC_5345725028603305858|PROD_PC_5345725028603305858,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
-          "site": "Jawa.gg",
-          "price": 459.99,
-          "priceDisplay": "$459.99",
-          "title": "GIGABYTE GeForce RTX 4060Ti GAMING OC 16G-USED",
-          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:1910699487177237934,headlineOfferDocid:1910699487177237934,imageDocid:3908062669099318731,gpcid:5262010364430996233,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
-          "site": "Walmart - Premier Deals",
-          "price": 474.99,
-          "priceDisplay": "$474.99",
-          "title": "Restored Asus Dual GeForce RTX 4060 Ti White OC Edition 8GB Gddr6 - Graphics Card (Refurbished)",
-          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:6727051740785028341,headlineOfferDocid:6727051740785028341,imageDocid:10045263888170275469,rds:PC_3508355601934186749|PROD_PC_3508355601934186749,gpcid:3508355601934186749,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
           "site": "Target",
           "price": 499.99,
           "priceDisplay": "$499.99",
           "title": "Refurbished: ASUS Dual GeForce RTX 4060 Ti White OC Edition 8GB GDDR6 - Graphics Card - Manufacturer Refurbished",
-          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:13881904303857113153,headlineOfferDocid:13881904303857113153,imageDocid:14414745894437114564,rds:PC_3508355601934186749|PROD_PC_3508355601934186749,gpcid:3508355601934186749,pvt:hg&hl=en&gl=us&udm=28"
+          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:13881904303857113153,headlineOfferDocid:13881904303857113153,imageDocid:14414745894437114564,rds:PC_3508355601934186749|PROD_PC_3508355601934186749,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Neobits.com",
+          "price": 500.55,
+          "priceDisplay": "$500.55",
+          "title": "Gigabyte GeForce RTX 4060 Ti Windforce OC 16G Graphics Card",
+          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=catalogid:13953571307312913470,productid:9679049720848120338,headlineOfferDocid:11505793722725266983,imageDocid:6786712231722749456,rds:PC_1386077257208792477|PROD_PC_1386077257208792477,gpcid:4458492331460269761,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay - respec.io",
+          "price": 509.97,
+          "priceDisplay": "$509.97",
+          "title": "PNY GeForce RTX 4060 Ti 16GB XLR8 GPU",
+          "link": "https://www.google.com/search?ibp=oshop&q=RTX 4060 Ti 16GB graphics card&prds=productid:5439039356724400403,headlineOfferDocid:5439039356724400403,imageDocid:2890728819428775115,pvt:hg&hl=en&gl=us&udm=28"
         }
       ]
     },
@@ -61,39 +61,39 @@
           "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:9290121520304633042,headlineOfferDocid:9290121520304633042,imageDocid:12736091686755243319,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Blue Fang Solutions",
-          "price": 150,
-          "priceDisplay": "$150.00",
-          "title": "AMD Ryzen 7 5800x",
-          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:10545137336735965381,headlineOfferDocid:10545137336735965381,imageDocid:16255647982711053200,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
           "site": "Jawa.gg",
-          "price": 170,
-          "priceDisplay": "$170.00",
-          "title": "AMD Ryzen 7 5800X Processor",
-          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:2096075988975022662,headlineOfferDocid:2096075988975022662,imageDocid:1526433109806408765,rds:PC_11027840870539637328|PROD_PC_11027840870539637328,pvt:hg&hl=en&gl=us&udm=28"
+          "price": 190,
+          "priceDisplay": "$190.00",
+          "title": "AMD Ryzen 7 5800X(Cooler Included)",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:6566825758699649733,headlineOfferDocid:6566825758699649733,imageDocid:4141080273353379422,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Newegg.com",
+          "site": "StarMicroInc.Net",
+          "price": 220,
+          "priceDisplay": "$220.00",
+          "title": "AMD Ryzen 7 5800X Processor",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:91513153618333019,productid:4761898338470137487,headlineOfferDocid:3936053362221517093,imageDocid:10691025917344316723,rds:PC_11027840870539637328|PROD_PC_11027840870539637328,gpcid:11027840870539637328,mid:576462775812520999,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "B&H Photo-Video-Audio",
           "price": 239,
           "priceDisplay": "$239.00",
           "title": "AMD Ryzen 7 5800XT Desktop Processor",
-          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:18332559111191092590,productid:4954260821402701249,headlineOfferDocid:10169498436550509952,imageDocid:2373191071849859500,rds:PC_8949493782420301580|PROD_PC_8949493782420301580,gpcid:8949493782420301580,mid:576462808523785894,pvt:hg&hl=en&gl=us&udm=28"
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:18332559111191092590,productid:4954260821402701249,headlineOfferDocid:13222178886935131989,imageDocid:236048163765256267,rds:PC_8949493782420301580|PROD_PC_8949493782420301580,gpcid:8949493782420301580,mid:576462808523785894,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Best Buy",
-          "price": 281.82,
-          "priceDisplay": "$281.82",
-          "title": "AMD Ryzen 7 5800XT 8-Core Processor",
-          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:11928979244685561966,productid:3880430509384929084,headlineOfferDocid:13424932092789886670,imageDocid:17742572319685380211,rds:PC_1689088828089487344|PROD_PC_1689088828089487344,gpcid:1689088828089487344,mid:576462563945699458,pvt:hg&hl=en&gl=us&udm=28"
+          "site": "Provantage",
+          "price": 255.88,
+          "priceDisplay": "$255.88",
+          "title": "AMD Ryzen 7 5800XT 8-Core 3.8GHz Processor",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:13268572157697015792,productid:14520908372806947777,headlineOfferDocid:18346168516826948418,imageDocid:16105833696904474101,gpcid:3316803892467241951,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Staples",
-          "price": 348.99,
-          "priceDisplay": "$348.99",
-          "title": "AMD Ryzen 7 7800X3D 8-Core Processor",
-          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:14072215030660324520,productid:15603465315327150882,headlineOfferDocid:8217963877316352596,imageDocid:10176352129078931591,rds:PC_12195918054695191494|PROD_PC_12195918054695191494,gpcid:12195918054695191494,mid:576462751485162124,pvt:hg&hl=en&gl=us&udm=28"
+          "site": "ExcelDisc",
+          "price": 269.82,
+          "priceDisplay": "$269.82",
+          "title": "Amd Ryzen 7 5800x Desktop Processor",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:4764699374949920922,productid:3591151730445501208,headlineOfferDocid:4340544220584512036,imageDocid:7372270098186467075,rds:PC_5464395377786449291|PROD_PC_5464395377786449291,gpcid:5464395377786449291,pvt:hg&hl=en&gl=us&udm=28"
         }
       ]
     },
@@ -109,6 +109,27 @@
           "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:8961339857543490427,productid:8879781908416712466,headlineOfferDocid:4357018720149416747,imageDocid:5412317987025440988,rds:PC_15533541470097344997|PROD_PC_15533541470097344997,gpcid:15533541470097344997,mid:576462898769509279,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
+          "site": "Jawa.gg",
+          "price": 65.99,
+          "priceDisplay": "$65.99",
+          "title": "Corsair Vengeance RGB PRO 32GB 16x2 with one nonfunctional",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=productid:7254319304825381919,headlineOfferDocid:7254319304825381919,imageDocid:389071396471285863,rds:PC_6141555070190905664|PROD_PC_6141555070190905664,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay",
+          "price": 100,
+          "priceDisplay": "$100.00",
+          "title": "Corsair Vengeance RGB Pro 16GB DDR4 3600MHz CL18 Memory",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:2261956853350810336,productid:13709304212346928550,headlineOfferDocid:13403661871759166354,imageDocid:17758740394469203477,rds:PC_6141555070190905664|PROD_PC_6141555070190905664,gpcid:2308975676138484932,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay - gstinga",
+          "price": 100,
+          "priceDisplay": "$100.00",
+          "title": "Corsair Vengeance Rgb $100 Per 16gb Stick Ddr4-3600 2 Available",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=productid:3811769146847597109,headlineOfferDocid:3811769146847597109,imageDocid:1323388939577525481,rds:PC_7782015193203265579|PROD_PC_7782015193203265579,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
           "site": "PCNation",
           "price": 113.88,
           "priceDisplay": "$113.88",
@@ -116,32 +137,11 @@
           "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:1889492318184630397,productid:359096410421419709,headlineOfferDocid:15981090603076841425,imageDocid:5706072587004513780,rds:PC_8078941196729346294|PROD_PC_8078941196729346294,gpcid:8078941196729346294,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "PayMore Lees Summit",
-          "price": 159.99,
-          "priceDisplay": "$159.99",
-          "title": "G.skill Trident Z Rgb 32GB (4x8gb) RAM DDR4 3600mhz F4-3600C18D-16GTZRX",
-          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=productid:6686776505367670943,headlineOfferDocid:6686776505367670943,imageDocid:12601043109982857252,rds:PC_208143826300297249|PROD_PC_208143826300297249,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
           "site": "ravir film",
           "price": 183.45,
           "priceDisplay": "$183.45",
           "title": "Corsair Vengeance RGB RS DDR4 Desktop Memory CMG",
           "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:7876701110259525145,productid:4814067436136034315,headlineOfferDocid:2641895277287640405,imageDocid:2711011926221438424,rds:PC_10017182625135615753|PROD_PC_10017182625135615753,gpcid:10017182625135615753,mid:576462883854639783,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
-          "site": "Newegg.com - MengYuanDianZi",
-          "price": 189,
-          "priceDisplay": "$189.00",
-          "title": "Corsair Vengeance LPX 32GB DDR4 2666MHz C15 Memory Kit",
-          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:18407192359561009695,productid:4539391761444555452,headlineOfferDocid:6536306809979961868,imageDocid:6585989035981498219,rds:PC_7775530680893226337|PROD_PC_7775530680893226337,gpcid:7789260689769826292,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
-          "site": "Newegg.com",
-          "price": 209.99,
-          "priceDisplay": "$209.99",
-          "title": "Corsair Vengeance RGB Pro SL 32GB DDR4 3200MHz CL16 Memory",
-          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:16686111673665690609,productid:17071394880904795432,headlineOfferDocid:3941274091900881896,imageDocid:10613819609446520681,rds:PC_18411819242662606611|PROD_PC_18411819242662606611,gpcid:18411819242662606611,mid:576462897997374180,pvt:hg&hl=en&gl=us&udm=28"
         }
       ]
     },
@@ -178,18 +178,18 @@
           "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=productid:3615044218253556324,headlineOfferDocid:3615044218253556324,imageDocid:9667335235120193143,rds:PC_9630864335374327824|PROD_PC_9630864335374327824,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
+          "site": "Newegg.com - Speed Electronics",
+          "price": 299.5,
+          "priceDisplay": "$299.50",
+          "title": "WD Black SN750 Solid State Drive WDS",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=catalogid:15593554009950710055,productid:586657669129167554,headlineOfferDocid:1383544495372485593,imageDocid:14321348195279699675,rds:PC_11106732589581130346|PROD_PC_11106732589581130346,gpcid:11106732589581130346,mid:576462372773947975,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
           "site": "Central Computers",
           "price": 299.99,
           "priceDisplay": "$299.99",
-          "title": "Western Digital WD_BLACK SN7100 NVMe SSD",
+          "title": "SanDisk SN7100 SSD M.2",
           "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=catalogid:8202513464780664826,productid:14561722687110188163,headlineOfferDocid:8929252083681442413,imageDocid:5995616436049713672,rds:PC_11767456331033303612|PROD_PC_11767456331033303612,gpcid:11767456331033303612,mid:576462858447066726,pvt:hg&hl=en&gl=us&udm=28"
-        },
-        {
-          "site": "Diskloop",
-          "price": 319,
-          "priceDisplay": "$319.00",
-          "title": "Western Digital WDS200T2X0E-00BCA0 2TB PCI-Express 4.0 x4 Solid State Drive (SSD)",
-          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=productid:14460742408169873471,headlineOfferDocid:14460742408169873471,imageDocid:1340624158661376700,pvt:hg&hl=en&gl=us&udm=28"
         }
       ]
     },
@@ -219,25 +219,25 @@
           "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:3157028438579936115,headlineOfferDocid:3157028438579936115,imageDocid:13202166369850254420,rds:PC_1175634467662045775|PROD_PC_1175634467662045775,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Computer Overhauls",
-          "price": 79.99,
-          "priceDisplay": "$79.99",
-          "title": "Corsair RM850x 80+ Gold Fully Modular ATX Power Supply w/ Cables! Computer Overhauls",
-          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:7280831698220775600,headlineOfferDocid:7280831698220775600,imageDocid:392610320907417311,rds:PC_5911327390751134275|PROD_PC_5911327390751134275,pvt:hg&hl=en&gl=us&udm=28"
+          "site": "Lake Michigan Computers",
+          "price": 68.59,
+          "priceDisplay": "$68.59",
+          "title": "Corsair HX850 850W 80 Plus Gold Power Supply 75-001219 CP-9020032",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:10805387167352406335,headlineOfferDocid:10805387167352406335,imageDocid:9655066810026317608,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Corsair.com",
-          "price": 104.99,
-          "priceDisplay": "$104.99",
-          "title": "Corsair Shift Fully Modular ATX Power Supply",
-          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=catalogid:15437519202661802415,productid:2403567332069698304,headlineOfferDocid:16214530813277718137,imageDocid:18184756265045094932,rds:PC_12514090120473792635|PROD_PC_12514090120473792635,gpcid:12514090120473792635,mid:576462858665670820,pvt:hg&hl=en&gl=us&udm=28"
+          "site": "directmacro.com",
+          "price": 108.81,
+          "priceDisplay": "$108.81",
+          "title": "Corsair Tx850w Power Supply",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=catalogid:10697292508682237957,productid:15601667280612365639,headlineOfferDocid:16616951989897372998,imageDocid:6605740019285303625,rds:PC_5675600366402575150|PROD_PC_5675600366402575150,gpcid:5675600366402575150,mid:576462892627828303,pvt:hg&hl=en&gl=us&udm=28"
         },
         {
-          "site": "Walmart - Hooray Store",
-          "price": 109,
-          "priceDisplay": "$109.00",
-          "title": "used Pre-owned Corsair RMx Series RM850x ATX Power Supply - Fully Modular - ATX 3.1 - PCIe 5.1 - Cybenetics Gold - Low-Noise - Japanese Capacitors -",
-          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:15423190203465012794,headlineOfferDocid:15423190203465012794,imageDocid:1257398796431367817,pvt:hg&hl=en&gl=us&udm=28"
+          "site": "Telquest International",
+          "price": 108.99,
+          "priceDisplay": "$108.99",
+          "title": "Corsair RMx Series RM850x 850W 80+ Gold Fully Modular Power Supply",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=catalogid:15189697354090924049,productid:3238262681975940355,headlineOfferDocid:2561574185441836219,imageDocid:3574344188022394238,rds:PC_5911327390751134275|PROD_PC_5911327390751134275,gpcid:5911327390751134275,mid:576462889991738996,pvt:hg&hl=en&gl=us&udm=28"
         }
       ]
     }
