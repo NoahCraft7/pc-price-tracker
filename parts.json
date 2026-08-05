@@ -2,7 +2,9 @@
   {
     "id": "gpu",
     "label": "NVIDIA GeForce RTX 4060 Ti 16GB",
-    "query": "RTX 4060 Ti 16GB graphics card"
+    "query": "RTX 4060 Ti 16GB -8GB graphics card",
+    "mustContain": ["16gb", "16 gb"],
+    "mustNotContain": ["8gb", "8 gb"]
   },
   {
     "id": "cpu",
