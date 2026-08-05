@@ -1,126 +1,245 @@
-// update-prices.mjs
-// Fetches current prices for each part in parts.json using SerpApi's
-// Google Shopping engine (covers Amazon, Newegg, Best Buy, and more in one call),
-// then writes the results to prices.json.
-
-import { readFile, writeFile } from "fs/promises";
-
-const SERPAPI_KEY = process.env.SERPAPI_KEY;
-
-if (!SERPAPI_KEY) {
-  console.error("Missing SERPAPI_KEY environment variable. Set it as a GitHub Actions secret.");
-  process.exit(1);
-}
-
-async function fetchOffersForPart(part) {
-  const url = new URL("https://serpapi.com/search.json");
-  url.searchParams.set("engine", "google_shopping");
-  url.searchParams.set("q", part.query);
-  url.searchParams.set("api_key", SERPAPI_KEY);
-  url.searchParams.set("num", "20");
-
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`SerpApi request failed for "${part.query}": ${res.status} ${res.statusText}`);
-  }
-  const data = await res.json();
-
-  const results = data.shopping_results || [];
-
-  // Some searches (notably GPUs with a specific VRAM size) return
-  // similarly-named but wrong variants, e.g. an 8GB card showing up for a
-  // "16GB" search. Reject anything whose title conflicts with the part's
-  // expected spec before we ever consider it as an offer.
-  const passesVariantCheck = (title) => {
-    if (!part.mustContain && !part.mustNotContain) return true;
-    const t = (title || "").toLowerCase();
-    // Extract VRAM-looking tokens (handles "16gb", "16 gb", "16g", and model-number
-    // suffixes like "o8g" — no leading \b since letter+digit combos lack a boundary there).
-    const matches = [...t.matchAll(/(\d{1,2})\s*-?\s*g(b)?\b/g)];
-    const sizes = matches.map(m => parseInt(m[1], 10)).filter(n => [8,10,12,16,24].includes(n));
-    if (part.mustContain) {
-      const wantsSize = part.mustContain.some(s => /^\d+\s*gb?$/i.test(s.replace(/\s/g,'')));
-      if (wantsSize) {
-        // Require explicit confirmation of the wanted size — don't assume on ambiguous titles.
-        const wanted = parseInt(part.mustContain[0], 10);
-        return sizes.includes(wanted);
-      }
+{
+  "updatedAt": "2026-08-05T16:28:45.481Z",
+  "parts": {
+    "gpu": {
+      "label": "NVIDIA GeForce RTX 4060 Ti 16GB",
+      "query": "\"RTX 4060 Ti 16GB\"",
+      "offers": [
+        {
+          "site": "Best Buy",
+          "price": 327.74,
+          "priceDisplay": "$327.74",
+          "title": "ASUS - Refurbished Excellent - Dual GeForce RTX 4060 Ti EVO OC Edition 8GB Graphics Card - Black",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=productid:1887250675238695798,headlineOfferDocid:1887250675238695798,imageDocid:7973266279145246802,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Target",
+          "price": 344.99,
+          "priceDisplay": "$344.99",
+          "title": "Refurbished: ASUS Dual GeForce RTX 4060 Ti EVO OC Edition 8GB Graphics Card - Manufacturer Refurbished",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=productid:14862594083076719539,headlineOfferDocid:14862594083076719539,imageDocid:1939073500858821438,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Walmart - Seller",
+          "price": 349.99,
+          "priceDisplay": "$349.99",
+          "title": "Restored Asus RTX 4060 Ti EVO OC 8GB Gddr6 Dual-rtx4060ti-o8g-evo Video Graphics Card (Refurbished)",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=productid:9695021635837175845,headlineOfferDocid:9695021635837175845,imageDocid:8973190731700076144,rds:PC_5345725028603305858|PROD_PC_5345725028603305858,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Star Promotion",
+          "price": 529,
+          "priceDisplay": "$529.00",
+          "title": "MSI NVIDIA GeForce RTX 4060 Ti Gaming X Graphics Card",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=catalogid:14639584092383607665,productid:18356989693311979294,headlineOfferDocid:12937402076545470711,imageDocid:1954293984661015002,rds:PC_14057480617285577875|PROD_PC_14057480617285577875,gpcid:14057480617285577875,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Computer Headquarters",
+          "price": 533.49,
+          "priceDisplay": "$533.49",
+          "title": "Zotac Gaming GeForce RTX 4060 Ti AMP Graphics Card",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=catalogid:11260730957168861004,productid:12251522253171711484,headlineOfferDocid:7778626558945588945,imageDocid:15260836773224457671,rds:PC_9716041785761830279|PROD_PC_9716041785761830279,gpcid:9716041785761830279,mid:576462828281608087,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "picopc.co",
+          "price": 604.32,
+          "priceDisplay": "$604.32",
+          "title": "ProArt GeForce RTX 4060 Ti OC Edition 16GB GDDR6",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=catalogid:18360076338313620380,productid:8888826396567857846,headlineOfferDocid:1802148592173729617,imageDocid:1595749692885347719,rds:PC_8357294847594474713|PROD_PC_8357294847594474713,gpcid:14145865709989736177,pvt:hg&hl=en&gl=us&udm=28"
+        }
+      ]
+    },
+    "cpu": {
+      "label": "AMD Ryzen 7 5800X3D",
+      "query": "AMD Ryzen 7 5800X3D processor",
+      "offers": [
+        {
+          "site": "AliExpress - AliExpress-6001627347",
+          "price": 2.04,
+          "priceDisplay": "$2.04",
+          "title": "New AMD Ryzen 7 5800X3D High End Gaming CPU 8 Core 16 Thread 5.0GHz Boost 96MB Cache 105W AM4 DDR4",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:3852056868246865450,headlineOfferDocid:3852056868246865450,imageDocid:9270392813909287915,rds:PC_17940905700117574189|PROD_PC_17940905700117574189,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay",
+          "price": 187,
+          "priceDisplay": "$187.00",
+          "title": "Amd Ryzen 7 5800x Am4 Upgrade Gaming Cpu Processor R7-5800x 3.8ghz",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:10550985745338552366,headlineOfferDocid:10550985745338552366,imageDocid:2454017291273045633,rds:PC_12436335227679180655|PROD_PC_12436335227679180655,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay - leadteksz",
+          "price": 189,
+          "priceDisplay": "$189.00",
+          "title": "Amd R7 Ryzen 7 5800x 5700x R5 5600x 5600g 5600 Processor Am4 B2",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:915560282471642378,headlineOfferDocid:915560282471642378,imageDocid:4601529741141765442,rds:PC_12436335227679180655|PROD_PC_12436335227679180655,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Jawa.gg",
+          "price": 190,
+          "priceDisplay": "$190.00",
+          "title": "AMD Ryzen 7 5800X(Cooler Included)",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:6566825758699649733,headlineOfferDocid:6566825758699649733,imageDocid:4141080273353379422,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay - asusparts2022",
+          "price": 199.99,
+          "priceDisplay": "$199.99",
+          "title": "AMD Ryzen 7 5800X Processor",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=catalogid:15642859877916073336,productid:7850341625235173499,headlineOfferDocid:10836122445878234977,imageDocid:9633315880517321632,rds:PC_9116343702040103432|PROD_PC_9116343702040103432,gpcid:9116343702040103432,mid:576462898620280631,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay - hardware-deals",
+          "price": 220,
+          "priceDisplay": "$220.00",
+          "title": "AMD Ryzen 7 R7-5800X 5800X 3.8-4.7GHz 8-Core 16-Thread Socket AM4 105W CPU Processor | 2400 MHz | 64 MB | 4 MB | Epyc",
+          "link": "https://www.google.com/search?ibp=oshop&q=AMD Ryzen 7 5800X3D processor&prds=productid:6464034086895630633,headlineOfferDocid:6464034086895630633,imageDocid:1785050963294097817,rds:PC_3970475997627071651|PROD_PC_3970475997627071651,pvt:hg&hl=en&gl=us&udm=28"
+        }
+      ]
+    },
+    "ram": {
+      "label": "Corsair Vengeance RGB 32GB DDR4-3600",
+      "query": "Corsair Vengeance RGB 32GB DDR4 3600",
+      "offers": [
+        {
+          "site": "Pondesk",
+          "price": 62.99,
+          "priceDisplay": "$62.99",
+          "title": "Corsair Vengeance RGB Pro 16GB DDR4 3600MHz Memory",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:8961339857543490427,productid:8879781908416712466,headlineOfferDocid:4357018720149416747,imageDocid:5412317987025440988,rds:PC_15533541470097344997|PROD_PC_15533541470097344997,gpcid:15533541470097344997,mid:576462898769509279,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Timber Works",
+          "price": 75,
+          "priceDisplay": "$75.00",
+          "title": "Ram Pc Corsair 3600 Ddr4 Rgb Corsair Ram Corsair Vengeance Pro Rgb 3000mhz Ddr4 Ram Corsair",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=productid:3189330125328654876,headlineOfferDocid:3189330125328654876,imageDocid:881721757760951692,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay",
+          "price": 100,
+          "priceDisplay": "$100.00",
+          "title": "Corsair Vengeance RGB Pro 16GB DDR4 3600MHz CL18 Memory",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:2261956853350810336,productid:13709304212346928550,headlineOfferDocid:13403661871759166354,imageDocid:17758740394469203477,rds:PC_2308975676138484932|PROD_PC_2308975676138484932,gpcid:2308975676138484932,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "MBPC",
+          "price": 159.99,
+          "priceDisplay": "$159.99",
+          "title": "CORSAIR VENGEANCE LPX DDR4 MEMORY CMK",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:5391883256833034359,productid:11514783491620938381,headlineOfferDocid:6187281678552917295,imageDocid:15934424240531040286,rds:PC_7775530680893226337|PROD_PC_7775530680893226337,gpcid:7775530680893226337,mid:576462741154612049,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "eBay - teksavers",
+          "price": 172.91,
+          "priceDisplay": "$172.91",
+          "title": "Corsair Vengeance RGB Pro DDR4 SDRAM Memory",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:3394201794040985068,productid:16146971744295840901,headlineOfferDocid:7345048238029990424,imageDocid:11545496466409390831,rds:PC_6141555070190905664|PROD_PC_6141555070190905664,gpcid:6141555070190905664,mid:576462758508712301,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "ravir film",
+          "price": 183.45,
+          "priceDisplay": "$183.45",
+          "title": "Corsair Vengeance RGB RS DDR4 Desktop Memory CMG",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair Vengeance RGB 32GB DDR4 3600&prds=catalogid:7876701110259525145,productid:4814067436136034315,headlineOfferDocid:2641895277287640405,imageDocid:2711011926221438424,rds:PC_10017182625135615753|PROD_PC_10017182625135615753,gpcid:10017182625135615753,mid:576462883854639783,pvt:hg&hl=en&gl=us&udm=28"
+        }
+      ]
+    },
+    "storage": {
+      "label": "WD Black SN850X 2TB NVMe",
+      "query": "WD Black SN850X 2TB NVMe SSD",
+      "offers": [
+        {
+          "site": "SizeMetal",
+          "price": 100,
+          "priceDisplay": "$100.00",
+          "title": "Western Digital WD Black SN850 Solid State Drive WDS",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=catalogid:17933647725648931385,productid:836174291159093681,headlineOfferDocid:5174005780449614492,imageDocid:8332356908815470359,rds:PC_14078532579517406254|PROD_PC_14078532579517406254,gpcid:14078532579517406254,mid:576462803942983240,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "ravir film",
+          "price": 100,
+          "priceDisplay": "$100.00",
+          "title": "Western Digital C50 Expansion Card for Xbox",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=catalogid:16165661573498248074,productid:7242594030914479797,headlineOfferDocid:4750726014134866832,imageDocid:13818867325889538243,rds:PC_1816353619104193155|PROD_PC_1816353619104193155,gpcid:1816353619104193155,mid:576462745978895029,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Neobits.com",
+          "price": 245.2,
+          "priceDisplay": "$245.20",
+          "title": "WD Black SN850 1TB Internal Solid State Drive",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=catalogid:7184792572012247620,productid:10465325099434931489,headlineOfferDocid:2854736696223421910,imageDocid:9590927097242921361,rds:PC_15954966659207032301|PROD_PC_15954966659207032301,gpcid:9599824370240944908,mid:576462898560993287,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Filmtools",
+          "price": 249.99,
+          "priceDisplay": "$249.99",
+          "title": "WD _BLACK SN850X NVMe SSD Gaming Storage with Heatsink 1TB",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=productid:4611202887950212952,headlineOfferDocid:4611202887950212952,imageDocid:3886430454974338928,rds:PC_9630864335374327824|PROD_PC_9630864335374327824,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Orange Hardwares",
+          "price": 252.55,
+          "priceDisplay": "$252.55",
+          "title": "SDCPNRZ-2T00 SanDisk PC SN810 2TB PCI Express 4.0 NVMe M.2 2280 Solid State Drive",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=productid:7157054989932780324,headlineOfferDocid:7157054989932780324,imageDocid:10889201484900153880,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Provantage",
+          "price": 289.99,
+          "priceDisplay": "$289.99",
+          "title": "SanDisk WDS100T2X0E-00BCA0 WD_Black SN850X NVMe SSD - 1TB,",
+          "link": "https://www.google.com/search?ibp=oshop&q=WD Black SN850X 2TB NVMe SSD&prds=productid:3615044218253556324,headlineOfferDocid:3615044218253556324,imageDocid:9667335235120193143,rds:PC_9630864335374327824|PROD_PC_9630864335374327824,pvt:hg&hl=en&gl=us&udm=28"
+        }
+      ]
+    },
+    "psu": {
+      "label": "Corsair RM850x 850W 80+ Gold",
+      "query": "Corsair RM850x 850W power supply",
+      "offers": [
+        {
+          "site": "retail.era",
+          "price": 35.65,
+          "priceDisplay": "$35.65",
+          "title": "Corsair RM850 850W Modular Desktop PSU",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:11882607080804286290,headlineOfferDocid:11882607080804286290,imageDocid:5154881127049642309,rds:PC_3394089162892374205|PROD_PC_3394089162892374205,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Reuse Medical Equipment",
+          "price": 49,
+          "priceDisplay": "$49.00",
+          "title": "CORSAIR RM850 850W ATX Full Modular ATX Power Supply",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:9481865001663626454,headlineOfferDocid:9481865001663626454,imageDocid:17100779169329909808,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Balux Pet Market",
+          "price": 57.62,
+          "priceDisplay": "$57.62",
+          "title": "CORSAIR RMX Series, RM850x, 850 Watt, 80+ Gold Certified, Fully Modular Power Supply",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:3157028438579936115,headlineOfferDocid:3157028438579936115,imageDocid:13202166369850254420,rds:PC_1175634467662045775|PROD_PC_1175634467662045775,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "PayMore York",
+          "price": 59.99,
+          "priceDisplay": "$59.99",
+          "title": "Corsair Rm850x RPS0160 No Rating 850W Fully Modular Power Supply",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:943890445626760088,headlineOfferDocid:943890445626760088,imageDocid:9363668588115780945,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "Lake Michigan Computers",
+          "price": 68.59,
+          "priceDisplay": "$68.59",
+          "title": "Corsair HX850 850W 80 Plus Gold Power Supply 75-001219 CP-9020032",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=productid:10805387167352406335,headlineOfferDocid:10805387167352406335,imageDocid:9655066810026317608,pvt:hg&hl=en&gl=us&udm=28"
+        },
+        {
+          "site": "PayMore Frederick",
+          "price": 69.99,
+          "priceDisplay": "$69.99",
+          "title": "Corsair Power Supply",
+          "link": "https://www.google.com/search?ibp=oshop&q=Corsair RM850x 850W power supply&prds=catalogid:13159500161496089490,productid:7715882362944127389,headlineOfferDocid:10463907575472451477,imageDocid:13839526553634098132,rds:PC_3707762462954544415|PROD_PC_3707762462954544415,gpcid:3707762462954544415,pvt:hg&hl=en&gl=us&udm=28"
+        }
+      ]
     }
-    if (part.mustNotContain && part.mustNotContain.some(s => t.includes(s.toLowerCase()))) return false;
-    return true;
-  };
-
-  // Keep only results that have both a price and a source/link, then
-  // pick the best (lowest) offer per retailer so we get a clean
-  // "one price per site" comparison instead of 20 near-duplicates.
-  const bySite = new Map();
-  for (const r of results) {
-    if (!r.price || !r.source) continue;
-    if (!passesVariantCheck(r.title)) continue;
-    const priceNum = parsePrice(r.price);
-    if (priceNum === null) continue;
-
-    const existing = bySite.get(r.source);
-    if (!existing || priceNum < existing.price) {
-      bySite.set(r.source, {
-        site: r.source,
-        price: priceNum,
-        priceDisplay: r.price,
-        title: r.title,
-        link: r.product_link || r.link || null,
-      });
-    }
   }
-
-  const offers = Array.from(bySite.values()).sort((a, b) => a.price - b.price);
-  return offers.slice(0, 6); // keep the 6 cheapest sites
 }
-
-function parsePrice(str) {
-  const match = String(str).replace(/,/g, "").match(/(\d+(\.\d+)?)/);
-  return match ? parseFloat(match[1]) : null;
-}
-
-async function main() {
-  const partsRaw = await readFile(new URL("../parts.json", import.meta.url), "utf-8");
-  const parts = JSON.parse(partsRaw);
-
-  const output = {
-    updatedAt: new Date().toISOString(),
-    parts: {},
-  };
-
-  for (const part of parts) {
-    console.log(`Fetching offers for: ${part.label}`);
-    try {
-      const offers = await fetchOffersForPart(part);
-      output.parts[part.id] = {
-        label: part.label,
-        query: part.query,
-        offers,
-      };
-    } catch (err) {
-      console.error(`Failed for ${part.label}:`, err.message);
-      output.parts[part.id] = {
-        label: part.label,
-        query: part.query,
-        offers: [],
-        error: err.message,
-      };
-    }
-    // Small delay so we don't hammer the API back-to-back.
-    await new Promise((r) => setTimeout(r, 1000));
-  }
-
-  await writeFile(
-    new URL("../prices.json", import.meta.url),
-    JSON.stringify(output, null, 2)
-  );
-
-  console.log("Done. Wrote prices.json");
-}
-
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
