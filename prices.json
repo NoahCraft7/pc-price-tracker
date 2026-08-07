@@ -1,26 +1,10 @@
 {
-  "updatedAt": "2026-08-07T23:44:57.173Z",
+  "updatedAt": "2026-08-07T23:52:10.373Z",
   "parts": {
     "gpu": {
       "label": "NVIDIA GeForce RTX 4060 Ti 16GB",
       "query": "\"RTX 4060 Ti 16GB\"",
       "offers": [
-        {
-          "site": "AliExpress - AliExpress-6004432986",
-          "price": 422.05,
-          "priceDisplay": "$422.05",
-          "title": "5060 Ti Deluxe 16GB Game Design Computer Graphics Card",
-          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=catalogid:8121525929691325437,productid:2840093175465884716,headlineOfferDocid:602560752456822159,imageDocid:12819002745683258150,pvt:hg&hl=en&gl=us&udm=28",
-          "productId": "8121525929691325437"
-        },
-        {
-          "site": "B&H Photo-Video-Audio",
-          "price": 579.99,
-          "priceDisplay": "$579.99",
-          "title": "ASUS GeForce RTX 5060 Ti Dual OC 16GB Graphics Card",
-          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=catalogid:11904076950872166148,productid:4447400659561871683,headlineOfferDocid:8585038119757783660,imageDocid:1970664823838100626,rds:PC_17932885610753490529|PROD_PC_17932885610753490529,gpcid:13323128256335419967,mid:576462898558409285,pvt:hg&hl=en&gl=us&udm=28",
-          "productId": "11904076950872166148"
-        },
         {
           "site": "Best Buy",
           "price": 599.99,
@@ -52,6 +36,22 @@
           "title": "Zephyr Rtx 4060ti 16g Gpu Single Fan Graphics Design Itx Game Mini",
           "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=productid:17174114794177271230,headlineOfferDocid:17174114794177271230,imageDocid:11498653451713218050,pvt:hg&hl=en&gl=us&udm=28",
           "productId": "17174114794177271230"
+        },
+        {
+          "site": "Walmart - ASPIRING-ELECTRONICS",
+          "price": 755.99,
+          "priceDisplay": "$755.99",
+          "title": "Aspiring Rtx 4060 Ti 16 Gb Turbo Gddr6 128 Bit Ai Graphics Card",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=catalogid:2684068121843339283,productid:15222881105273656094,headlineOfferDocid:3730396281906326946,imageDocid:4387612562770355614,gpcid:15499271496639775888,pvt:hg&hl=en&gl=us&udm=28",
+          "productId": "2684068121843339283"
+        },
+        {
+          "site": "eBay - chrome.parts",
+          "price": 850,
+          "priceDisplay": "$850.00",
+          "title": "For Colorful iGame GeForce RTX 4060 Ti Mini OC 16GB GDDR6 Graphics card OEM",
+          "link": "https://www.google.com/search?ibp=oshop&q=\"RTX 4060 Ti 16GB\"&prds=productid:12764416100910588935,headlineOfferDocid:12764416100910588935,imageDocid:623416196563438615,pvt:hg&hl=en&gl=us&udm=28",
+          "productId": "12764416100910588935"
         }
       ]
     },
