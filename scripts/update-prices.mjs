@@ -32,8 +32,13 @@ async function fetchOffersForPart(part) {
   // "16GB" search. Reject anything whose title conflicts with the part's
   // expected spec before we ever consider it as an offer.
   const passesVariantCheck = (title) => {
-    if (!part.mustContain && !part.mustNotContain) return true;
     const t = (title || "").toLowerCase();
+
+    // Reject wrong model generation entirely (e.g. "5060 Ti" or "4070"
+    // slipping into a "4060 Ti" search). Checked independent of VRAM.
+    if (part.requireToken && !t.includes(part.requireToken.toLowerCase())) return false;
+
+    if (!part.mustContain && !part.mustNotContain) return true;
     // Extract VRAM-looking tokens (handles "16gb", "16 gb", "16g", and model-number
     // suffixes like "o8g" — no leading \b since letter+digit combos lack a boundary there).
     const matches = [...t.matchAll(/(\d{1,2})\s*-?\s*g(b)?\b/g)];
@@ -98,18 +103,39 @@ async function resolveMerchantLink(productId, preferredSite) {
   url.searchParams.set("api_key", SERPAPI_KEY);
 
   const res = await fetch(url);
-  if (!res.ok) return null;
+  if (!res.ok) {
+    console.warn(`  google_product lookup HTTP error: ${res.status} ${res.statusText}`);
+    return null;
+  }
   const data = await res.json();
 
-  const sellers = data.sellers_results?.online_sellers || [];
-  if (sellers.length === 0) return null;
+  if (data.error) {
+    console.warn(`  google_product lookup API error: ${data.error}`);
+    return null;
+  }
 
-  // Prefer a seller matching the site we already picked as cheapest;
-  // otherwise fall back to whichever seller SerpApi lists first.
+  const sellers = data.sellers_results?.online_sellers || [];
+
+  if (sellers.length === 0) {
+    // Log the top-level keys we actually got back so we can see what shape
+    // the response is, rather than guessing blind next time this happens.
+    console.warn(`  No online_sellers found for product_id ${productId}. Response keys: ${Object.keys(data).join(', ')}`);
+    // Try a couple of other plausible locations before giving up.
+    const altLink =
+      data.product_results?.link ||
+      data.product_results?.serpapi_link ||
+      null;
+    return altLink;
+  }
+
   const match = sellers.find(s => (s.name || "").toLowerCase().includes((preferredSite || "").toLowerCase()))
     || sellers[0];
 
-  return match?.link || match?.direct_link || null;
+  const resolvedLink = match?.link || match?.direct_link || null;
+  if (!resolvedLink) {
+    console.warn(`  Seller matched (${match?.name}) but had no usable link field. Keys: ${Object.keys(match || {}).join(', ')}`);
+  }
+  return resolvedLink;
 }
 
 function parsePrice(str) {
