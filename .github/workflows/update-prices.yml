@@ -2,9 +2,10 @@ name: Update PC Part Prices
 
 on:
   schedule:
-    # Runs at 13:00 UTC every other day (~9am ET / 6am PT).
-    # This keeps you comfortably inside SerpApi's free 100/month tier.
-    - cron: "0 13 */2 * *"
+    # Runs at 13:00 UTC every 4th day (~9am ET / 6am PT).
+    # ~7-8 runs/month x 10 API calls/run = ~75 calls/month, leaving headroom
+    # under SerpApi's 100/month free cap even with occasional manual runs.
+    - cron: "0 13 */4 * *"
   workflow_dispatch: {} # lets you also trigger it manually from the Actions tab
 
 permissions:
