@@ -27,12 +27,36 @@ async function fetchOffersForPart(part) {
 
   const results = data.shopping_results || [];
 
+  // Some searches (notably GPUs with a specific VRAM size) return
+  // similarly-named but wrong variants, e.g. an 8GB card showing up for a
+  // "16GB" search. Reject anything whose title conflicts with the part's
+  // expected spec before we ever consider it as an offer.
+  const passesVariantCheck = (title) => {
+    if (!part.mustContain && !part.mustNotContain) return true;
+    const t = (title || "").toLowerCase();
+    // Extract VRAM-looking tokens (handles "16gb", "16 gb", "16g", and model-number
+    // suffixes like "o8g" — no leading \b since letter+digit combos lack a boundary there).
+    const matches = [...t.matchAll(/(\d{1,2})\s*-?\s*g(b)?\b/g)];
+    const sizes = matches.map(m => parseInt(m[1], 10)).filter(n => [8,10,12,16,24].includes(n));
+    if (part.mustContain) {
+      const wantsSize = part.mustContain.some(s => /^\d+\s*gb?$/i.test(s.replace(/\s/g,'')));
+      if (wantsSize) {
+        // Require explicit confirmation of the wanted size — don't assume on ambiguous titles.
+        const wanted = parseInt(part.mustContain[0], 10);
+        return sizes.includes(wanted);
+      }
+    }
+    if (part.mustNotContain && part.mustNotContain.some(s => t.includes(s.toLowerCase()))) return false;
+    return true;
+  };
+
   // Keep only results that have both a price and a source/link, then
   // pick the best (lowest) offer per retailer so we get a clean
   // "one price per site" comparison instead of 20 near-duplicates.
   const bySite = new Map();
   for (const r of results) {
     if (!r.price || !r.source) continue;
+    if (!passesVariantCheck(r.title)) continue;
     const priceNum = parsePrice(r.price);
     if (priceNum === null) continue;
 
@@ -44,12 +68,48 @@ async function fetchOffersForPart(part) {
         priceDisplay: r.price,
         title: r.title,
         link: r.product_link || r.link || null,
+        productId: r.product_id || null,
       });
     }
   }
 
-  const offers = Array.from(bySite.values()).sort((a, b) => a.price - b.price);
-  return offers.slice(0, 6); // keep the 6 cheapest sites
+  let offers = Array.from(bySite.values()).sort((a, b) => a.price - b.price).slice(0, 6);
+
+  // The Google Shopping result's "link" is often just a Google search/results
+  // page rather than the retailer's real product page. For the single
+  // cheapest offer, do one extra lookup to resolve an actual merchant link
+  // so at least the top recommendation is directly clickable.
+  if (offers.length > 0 && offers[0].productId) {
+    try {
+      const realLink = await resolveMerchantLink(offers[0].productId, offers[0].site);
+      if (realLink) offers[0].link = realLink;
+    } catch (e) {
+      console.warn(`Could not resolve direct link for ${part.label}:`, e.message);
+    }
+  }
+
+  return offers;
+}
+
+async function resolveMerchantLink(productId, preferredSite) {
+  const url = new URL("https://serpapi.com/search.json");
+  url.searchParams.set("engine", "google_product");
+  url.searchParams.set("product_id", productId);
+  url.searchParams.set("api_key", SERPAPI_KEY);
+
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const data = await res.json();
+
+  const sellers = data.sellers_results?.online_sellers || [];
+  if (sellers.length === 0) return null;
+
+  // Prefer a seller matching the site we already picked as cheapest;
+  // otherwise fall back to whichever seller SerpApi lists first.
+  const match = sellers.find(s => (s.name || "").toLowerCase().includes((preferredSite || "").toLowerCase()))
+    || sellers[0];
+
+  return match?.link || match?.direct_link || null;
 }
 
 function parsePrice(str) {
