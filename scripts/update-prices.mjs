@@ -101,10 +101,15 @@ async function resolveMerchantLink(productId, preferredSite) {
   url.searchParams.set("engine", "google_product");
   url.searchParams.set("product_id", productId);
   url.searchParams.set("api_key", SERPAPI_KEY);
+  url.searchParams.set("gl", "us");
+  url.searchParams.set("hl", "en");
 
   const res = await fetch(url);
   if (!res.ok) {
-    console.warn(`  google_product lookup HTTP error: ${res.status} ${res.statusText}`);
+    // Log the actual response body, not just the status — SerpApi usually
+    // includes a specific "error" message explaining what's missing/wrong.
+    const bodyText = await res.text().catch(() => "(could not read body)");
+    console.warn(`  google_product lookup HTTP error: ${res.status} ${res.statusText} — body: ${bodyText.slice(0, 300)}`);
     return null;
   }
   const data = await res.json();
