@@ -74,6 +74,7 @@ async function fetchOffersForPart(part) {
         title: r.title,
         link: r.product_link || r.link || null,
         productId: r.product_id || null,
+        immersiveToken: r.immersive_product_page_token || null,
       });
     }
   }
@@ -84,9 +85,9 @@ async function fetchOffersForPart(part) {
   // page rather than the retailer's real product page. For the single
   // cheapest offer, do one extra lookup to resolve an actual merchant link
   // so at least the top recommendation is directly clickable.
-  if (offers.length > 0 && offers[0].productId) {
+  if (offers.length > 0 && offers[0].immersiveToken) {
     try {
-      const realLink = await resolveMerchantLink(offers[0].productId, offers[0].site);
+      const realLink = await resolveMerchantLink(offers[0].immersiveToken, offers[0].site);
       if (realLink) offers[0].link = realLink;
     } catch (e) {
       console.warn(`Could not resolve direct link for ${part.label}:`, e.message);
@@ -96,41 +97,30 @@ async function fetchOffersForPart(part) {
   return offers;
 }
 
-async function resolveMerchantLink(productId, preferredSite) {
+async function resolveMerchantLink(immersiveToken, preferredSite) {
   const url = new URL("https://serpapi.com/search.json");
-  url.searchParams.set("engine", "google_product");
-  url.searchParams.set("product_id", productId);
+  url.searchParams.set("engine", "google_immersive_product");
+  url.searchParams.set("page_token", immersiveToken);
   url.searchParams.set("api_key", SERPAPI_KEY);
-  url.searchParams.set("gl", "us");
-  url.searchParams.set("hl", "en");
 
   const res = await fetch(url);
   if (!res.ok) {
-    // Log the actual response body, not just the status — SerpApi usually
-    // includes a specific "error" message explaining what's missing/wrong.
     const bodyText = await res.text().catch(() => "(could not read body)");
-    console.warn(`  google_product lookup HTTP error: ${res.status} ${res.statusText} — body: ${bodyText.slice(0, 300)}`);
+    console.warn(`  google_immersive_product lookup HTTP error: ${res.status} — body: ${bodyText.slice(0, 300)}`);
     return null;
   }
   const data = await res.json();
 
   if (data.error) {
-    console.warn(`  google_product lookup API error: ${data.error}`);
+    console.warn(`  google_immersive_product lookup API error: ${data.error}`);
     return null;
   }
 
-  const sellers = data.sellers_results?.online_sellers || [];
+  const sellers = data.online_sellers || data.sellers_results?.online_sellers || [];
 
   if (sellers.length === 0) {
-    // Log the top-level keys we actually got back so we can see what shape
-    // the response is, rather than guessing blind next time this happens.
-    console.warn(`  No online_sellers found for product_id ${productId}. Response keys: ${Object.keys(data).join(', ')}`);
-    // Try a couple of other plausible locations before giving up.
-    const altLink =
-      data.product_results?.link ||
-      data.product_results?.serpapi_link ||
-      null;
-    return altLink;
+    console.warn(`  No sellers found via immersive product. Response keys: ${Object.keys(data).join(', ')}`);
+    return null;
   }
 
   const match = sellers.find(s => (s.name || "").toLowerCase().includes((preferredSite || "").toLowerCase()))
