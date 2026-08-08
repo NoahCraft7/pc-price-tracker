@@ -116,11 +116,21 @@ async function resolveMerchantLink(immersiveToken, preferredSite) {
     return null;
   }
 
-  const sellers = data.online_sellers || data.sellers_results?.online_sellers || [];
+  const sellers =
+    data.online_sellers ||
+    data.sellers_results?.online_sellers ||
+    data.product_results?.stores ||
+    data.product_results?.sellers ||
+    data.product_results?.online_sellers ||
+    data.product_results?.seller_results?.online_sellers ||
+    [];
 
   if (sellers.length === 0) {
-    console.warn(`  No sellers found via immersive product. Response keys: ${Object.keys(data).join(', ')}`);
-    return null;
+    console.warn(`  No sellers found via immersive product. product_results keys: ${Object.keys(data.product_results || {}).join(', ')}`);
+    // As a last resort, some responses expose a single direct link on
+    // product_results itself rather than a seller list.
+    const directLink = data.product_results?.link || data.product_results?.product_link || null;
+    return directLink;
   }
 
   const match = sellers.find(s => (s.name || "").toLowerCase().includes((preferredSite || "").toLowerCase()))
